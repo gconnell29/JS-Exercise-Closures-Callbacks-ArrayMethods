@@ -136,6 +136,7 @@ function processProduct(num1, num2, cb) {
  * should return "sad".
 */
 function processContains(item, list, cb) {
+  // use includes
   let doesItExist = false;
   for (let i = 0; i < list.length; i++) {
     if (item === list[i]) {
@@ -225,7 +226,7 @@ function firstNamesAllCaps(runners) {
  * The runners in the array appear in the same order they appear in the `runners` array.
 */
 function getRunnersByTShirtSize(runners, size) {
-  let matchedSize = runners.filter(element => size === element.shirt_size);
+  return runners.filter(element => size === element.shirt_size);
 }
 
 /**
@@ -238,8 +239,12 @@ function getRunnersByTShirtSize(runners, size) {
  * @param runners array of runners like the one inside the /data/runners.js file.
  * @returns a number which is the sum of the donations by all runners.
 */
-function tallyUpDonations(/* CODE HERE */) {
-  /* CODE HERE */
+function tallyUpDonations(runners) {
+  // make array of donations 1st
+  // let donations = [];
+  // runners.forEach(element => {donations.push(element.donation);});
+  let donations = runners.map(element => element.donation);
+  return donations.reduce((total, acc) => total + acc, 0);
 }
 
 /////////////// CLOSURES ///////////////
@@ -260,7 +265,7 @@ function tallyUpDonations(/* CODE HERE */) {
 */
 function counterMaker() {
   // BROKEN CODE STARTS
-  const count = 0;
+  let count = 0;
   function counter() {
     ++count
   }
